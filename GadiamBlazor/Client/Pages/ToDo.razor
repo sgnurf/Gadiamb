@@ -1,0 +1,31 @@
+﻿@page "/todo"
+@using GadiamBlazor.Client.Models
+
+<h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
+
+<ul>
+    @foreach (var todo in todos)
+    {
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+             @todo.Title
+        </li>
+    }
+</ul>
+
+<input placeholder="Something todo" @bind="newToDo" />
+<button @onclick="AddTodo">Add todo</button>
+
+@code {
+    private IList<TodoItem> todos = new List<TodoItem>();
+    private string newToDo = string.Empty;
+
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newToDo))
+        {
+            todos.Add(new TodoItem(newToDo));
+            newToDo = string.Empty;
+        }
+    }
+}

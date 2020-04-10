@@ -1,0 +1,15 @@
+﻿@page "/login/logout"
+@using GadiamBlazor.Client.Authentication
+
+@inject ApiAuthenticationStateProvider ApiAuthenticationStateProvider;
+@inject NavigationManager NavigationManager
+@inject HttpClient http
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await http.PostAsync("/api/login/logout", null);
+        ApiAuthenticationStateProvider.MarkUserAsLoggedOut();
+        NavigationManager.NavigateTo("/");
+    }
+}

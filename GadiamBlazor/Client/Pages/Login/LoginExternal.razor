@@ -1,0 +1,31 @@
+﻿@using GadiamBlazor.Shared.Authentication;
+
+@inject HttpClient Http
+@inject NavigationManager navigationManager;
+
+<div class="pure-form">
+    <fieldset>
+        <legend>Use another service to log in.</legend>
+        @foreach (var provider in loginProviders)
+        {
+            <form action="/api/login/externalLogin" method="post">
+                <button type="submit"
+                        class="pure-button pure-button-primary"
+                        name="provider"
+                        value="@provider.Name"
+                        title="@("Log in using your "+provider.DisplayName+" account")">
+                    @provider.Name
+                </button>
+            </form>
+        }
+    </fieldset>
+</div>
+
+@code{
+    IEnumerable<SigninProviderModel> loginProviders = new SigninProviderModel[0];
+    protected override async Task OnInitializedAsync()
+    {
+        loginProviders = await Http.GetJsonAsync<SigninProviderModel[]>("/api/login/loginProviders");
+        StateHasChanged();
+    }
+}
