@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="3.2.0-preview1.20073.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Client\GadiamBlazor.Client.csproj" />
